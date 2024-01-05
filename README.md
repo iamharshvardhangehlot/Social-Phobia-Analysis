@@ -28,11 +28,12 @@ Explore the forefront of data analytics with our machine learning-based project,
 ![MLlibraries](https://github.com/iamharshvardhangehlot/Social-Phobia-Analysis/assets/114102704/da3e264f-5872-4164-9924-924a6826c598)
 
 ### Social Phobia Test
-![SocialPhobiaTest1](https://github.com/iamharshvardhangehlot/Social-Phobia-Analysis/assets/114102704/cc765716-bf5f-4a8c-925e-03bf3d69af29)
-![SocialPhobiaTest1](https://github.com/iamharshvardhangehlot/Social-Phobia-Analysis/assets/114102704/1de65ee2-223f-46c8-b62e-0e8e910f66e5)
+![SocialPhobiaTest](https://github.com/iamharshvardhangehlot/Social-Phobia-Analysis/assets/114102704/6be90829-1785-4366-bc2e-944275187f90)
+![SocialPhobiaTest1](https://github.com/iamharshvardhangehlot/Social-Phobia-Analysis/assets/114102704/ff17a2e2-2e99-4a16-a86e-c09b94a4dba5)
 
 ### Social Phobia Test Result
-![SocialPhobiaTest](https://github.com/iamharshvardhangehlot/Social-Phobia-Analysis/assets/114102704/3f97fd53-b817-4eab-bb9f-eb18aba68bcc)
+![SocialPhobiaTestResult](https://github.com/iamharshvardhangehlot/Social-Phobia-Analysis/assets/114102704/5032fb16-9bee-4cac-8cc5-afe230f3bc10)
+
 
 ## 🚀 Project Overview
 
