@@ -55,7 +55,15 @@ Initiate your exploration by following these steps:
 2. **Install dependencies:** `pip install -r requirements.txt`
 3. **Run the project:** [Instructions to run the project]
 
-Feel free to contribute or provide feedback!
+## Dataset Analysis Notebook
+
+Explore the in-depth analysis of our Social Phobia dataset in this Kaggle notebook:
+
+[![Dataset Analysis Notebook](https://www.kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/hvg730/cm-5-social-phobia-analysis)
+
+Feel free to delve into the insights and contribute to the exploration!
+
+
 
 
 
