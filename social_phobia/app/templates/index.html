@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+
+  <title>Social Phobia Analysis</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" type="image/png" href="{% static '/assets/images/logo/favicon.png' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+
+  <!--  CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static '/assets/css/animated.css'%}">
+  <link rel="stylesheet" type="text/css" href="{% static '/assets/css/owl.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static '/vendor/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static '/assets/css/fontawesome.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static '/assets/css/template-v1.css' %}">
+  <link rel="stylesheet" href="{% static '/assets/css/percent-bar.css' %}">
+
+  <style>
+    footer {
+      color: #555559;
+    }
+
+    strong {
+      font-size: 1.5em;
+    }
+
+    .title {
+      /* background: url(/sites/all/themes/tenablefourteen/img/16/bg-generic.png), linear-gradient(180deg, #430098, #0071ce), #00a5b5; */
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+    }
+
+    .title h1 {
+      padding: 0.5em 0;
+      font-size: 4em;
+      font-weight: 400;
+    }
+
+    title p {
+      font-size: 1.125em;
+    }
+
+    .flex-grid {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      flex-direction: row;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    .flex-one,
+    .flex-two {
+      width: 100%;
+      background-color: #fff;
+      color: #fff;
+      margin-bottom: 2em;
+      padding: 1em;
+    }
+
+    .flex-one p,
+    .flex-two p {
+      font-size: 1.125em;
+      text-shadow: 2px 2px 5px #263746;
+    }
+
+    .flex-one.flex-fewer,
+    .flex-two.flex-fewer {
+      background: url("/sites/all/themes/tenablefourteen/img/backgrounds/bg-dots.png") center center no-repeat, linear-gradient(0deg, #00236d, #003bba);
+      background-color: #0033a0;
+    }
+
+    .flex-one.flex-same,
+    .flex-two.flex-same {
+      background: url("/sites/all/themes/tenablefourteen/img/backgrounds/bg-dots.png") center center no-repeat, linear-gradient(0deg, #00559b, #028dff);
+      background-color: #0071ce;
+      margin-top: -1em;
+      margin-bottom: 1em;
+    }
+
+    .flex-one.flex-more,
+    .flex-two.flex-more {
+      background: url("/sites/all/themes/tenablefourteen/img/backgrounds/bg-dots.png") center center no-repeat, linear-gradient(0deg, #21004c, #4e00b2);
+      background-color: #430098;
+    }
+
+    @media (min-width: 38em) {
+
+      .flex-one,
+      .flex-two {
+        width: 47%;
+      }
+    }
+
+    @media (min-width: 64em) {
+      .flex-one {
+        width: 23%;
+      }
+
+      .flex-two {
+        width: 32%;
+      }
+    }
+
+    .gray {
+      background: #f5f5f5;
+    }
+
+    .lightgray {
+      background: #fff;
+    }
+
+    /* body,
+    html {
+      overflow-x: hidden;
+    } */
+
+    .carousel--wrapper {
+      /* max-width: 940px; */
+      width: 100%;
+      position: relative;
+      /* margin: 0 auto; */
+    }
+
+    .carousel--wrapper--sec {
+      overflow: visible;
+    }
+
+    /*
+.carousel--wrapper--sec:after, .carousel--wrapper--sec:before {
+content: "";
+position: absolute;
+width: 800px;
+height: 100%;
+top: 0;
+left: 100%;
+background: rgba(255, 255, 255, 0.5);
+z-index: 2;
+}
+
+.carousel--wrapper--sec:before {
+left: -800px;
+}
+*/
+    .carousel--wrapper {
+      /* Set max-width to prevent overflow */
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .carousel__content {
+      /* Adjust width to fit inside col-lg-12 */
+      width: 100%;
+      /* or specific width in pixels */
+      /* Other necessary styles */
+    }
+
+    .carousel--item {
+      /* Ensure responsiveness by using percentage-based widths */
+      width: 100%;
+      /* Adjust this as needed */
+      /* Other necessary styles */
+    }
+
+    .carousel {
+      width: 100%;
+      position: relative;
+    }
+
+    .carousel .progress-bar {
+      position: relative;
+      background-color: #fff;
+      height: 2em;
+    }
+
+    .carousel .progress-bar .progress-bar-insider {
+      position: relative;
+      background-color: #726ae3;
+      box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+      width: 4%;
+      height: 2em;
+      transition: 0.2s width;
+    }
+
+    .carousel .progress-bar .progress-bar-insider:after {
+      content: attr(data-progress);
+      color: white;
+      position: absolute;
+      right: 0.5em;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .carousel .carousel__content {
+      width: auto;
+      position: relative;
+      overflow: hidden;
+      -webkit-backface-visibility: hidden;
+      -webkit-transition: translate3d(0, 0, 0);
+    }
+
+    .carousel .carousel__content .carousel--item {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      float: left;
+      height: 25rem;
+      /* background-color: #425363; */
+    }
+
+    /* 
+    .carousel .carousel__content .carousel--item.teal {
+        background-color: #00a5b5;
+    }
+
+    .carousel .carousel__content .carousel--item.accent-teal {
+        background-color: #00839b;
+    }
+
+    .carousel .carousel__content .carousel--item.violet {
+        background-color: #33006f;
+    }
+
+    .carousel .carousel__content .carousel--item.accent-violet {
+        background-color: #33006f;
+    }
+
+    .carousel .carousel__content .carousel--item.blue {
+        background-color: #002f87;
+    }
+
+    .carousel .carousel__content .carousel--item.accent-blue {
+        background-color: #0071ce;
+    } */
+
+    .carousel .carousel__content .carousel--item .carousel--title {
+      transform: translateY(-50px);
+      padding: 0;
+      margin-bottom: 5%;
+      font-size: 1.8rem;
+      width: 100%;
+      text-align: center;
+      color: #000000;
+      opacity: 0.6;
+    }
+
+    .carousel .carousel__content .carousel--item .carousel--title--sub {
+      font-size: 1.4em;
+      /*padding: 0 16%;*/
+      max-width: 40em;
+      opacity: 1;
+    }
+
+    .carousel .carousel__content .carousel--item .carousel--radios {
+      font-size: 1em;
+      color: #000000;
+      opacity: 1;
+      text-align: center;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+    }
+
+    .radio-item {
+      display: flex;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+
+      flex-direction: column;
+      text-align: center;
+      margin: 0 0.444em;
+    }
+
+    .carousel .carousel__content .carousel--item .carousel--btn {
+      font-size: 2em;
+    }
+
+    .carousel .carousel__nav {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      margin-top: -17px;
+      left: 0;
+      z-index: 1;
+    }
+
+    .carousel .carousel__nav .nav--buttons {
+      position: absolute;
+      top: 0;
+      color: rgba(0, 0, 0, 0.75);
+      background: rgba(255, 255, 255, 0.5);
+      padding: 12px 12px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.5rem;
+      transition: padding 0.25s ease;
+    }
+
+    .carousel .carousel__nav .nav--buttons:hover {
+      padding: 15px 15px;
+    }
+
+    .carousel .carousel__nav .nav--buttons--left {
+      border-radius: 0px 3px 3px 0px;
+    }
+
+    .carousel .carousel__nav .nav--buttons--right {
+      right: 0;
+      border-radius: 3px 0px 0px 3px;
+    }
+
+    label {
+      padding: 0.25em 0 0;
+      cursor: pointer;
+    }
+
+    input[type=radio] {
+      -webkit-appearance: radio;
+      appearance: radio;
+      margin: 0 1em;
+      width: 0.6em;
+      height: 0.6em;
+      background: #eeeeee;
+      /* box-shadow: inset 0 0 0 0.4em #fff, 0 0 0 0.2em; */
+      border-radius: 50%;
+      transition: 0.2s;
+      cursor: pointer;
+      /* color: #ddd; */
+      accent-color: #726ae3;
+      text-align: center;
+      -ms-flex-item-align: center;
+      align-self: center;
+    }
+
+    input[type=radio]:hover,
+    input[type=radio]:checked {
+      background: #000;
+      /* box-shadow: inset 0 0 0 0.5em #fff, 0 0 0 0.25em #00a5b5; */
+    }
+
+    input[type=radio]:checked {
+      background: #726ae3;
+      /* box-shadow: inset 0 0 0 0.4em #fff, 0 0 0 0.2em #00a5b5; */
+    }
+
+    input[type=radio]:focus {
+      outline: 0;
+    }
+
+    .middle-flex {
+      margin-top: -1em;
+      margin-bottom: 1em;
+    }
+
+    @media (max-width: 40em) {
+      .carousel--title {
+        top: 20% !important;
+        font-size: 2em !important;
+      }
+
+      .carousel--title--sub {
+        margin-top: 0.5em !important;
+        font-size: 1em !important;
+      }
+
+      .carousel--radios {
+        top: 45% !important;
+      }
+
+      .carousel--btn {
+        font-size: 25px !important;
+      }
+
+      .carousel--title {
+        font-size: 1.5em !important;
+      }
+
+      .carousel--title--sub {
+        font-size: 0.9em !important;
+      }
+
+      .carousel--radios {
+        top: 40% !important;
+        font-size: 1.5em !important;
+      }
+
+      .full-when-mobile {
+        width: 100%;
+      }
+    }
+
+    @media (min-width: 30em) and (max-width: 60em) {
+      .carousel--radios {
+        width: 80% !important;
+      }
+
+      .progress-bar-insider {
+        font-size: 0.8em;
+        padding: 1.25em !important;
+      }
+    }
+
+    @media (max-width: 30em) {
+      .carousel--radios {
+        margin-top: 2em;
+        width: 10% !important;
+        font-size: 10px !important;
+      }
+
+      .progress-bar-insider {
+        font-size: 0.5em;
+        padding: 2em !important;
+      }
+    }
+
+    .score-slider-track {
+      margin-bottom: 4em;
+      position: relative;
+      border-radius: 0.125em;
+      background: linear-gradient(90deg, #ccc, #888);
+      box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.375);
+      height: 3em;
+      width: 100%;
+    }
+
+    .score-slider-track .score-slider {
+      position: relative;
+      height: 5em;
+      width: 10%;
+      background-color: #0071ce;
+      color: #fff;
+      box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.25);
+      transform: translateX(-5%);
+      top: -1em;
+      left: 0%;
+      transition: 0.8s;
+      border-radius: 0.125em;
+      line-height: 5em;
+      font-weight: bold;
+      z-index: 3;
+    }
+
+    .score-slider-track .score-slider-less {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      border-top-left-radius: 0.25em;
+      border-bottom-left-radius: 0.25em;
+      background-color: #0033a0;
+      color: #fff;
+      line-height: 3em;
+      height: 3em;
+      width: 0%;
+      transition: 0.8s;
+    }
+
+    .score-slider-track .score-slider-more {
+      position: absolute;
+      color: white;
+      line-height: 3em;
+      top: 0;
+      right: 0;
+      z-index: 0;
+      border-top-right-radius: 0.25em;
+      border-bottom-right-radius: 0.25em;
+      background-color: #430098;
+      color: #fff;
+      height: 3em;
+      width: 98%;
+      transition: 0.8s;
+    }
+  </style>
+
+</head>
+
+<body>
+
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="index.html" class="logo">
+              <!-- <img src="{% static '/assets/images/logo-v1.png" alt=""> -->
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+              <li class="scroll-to-section"><a href="#about">Models</a></li>
+              <li class="scroll-to-section"><a href="#services">Visualizations</a></li>
+              <li class="scroll-to-section"><a href="#portfolio">Libraries</a></li>
+              <li class="scroll-to-section"><a href="#blog">Team</a></li>
+              <li class="scroll-to-section"><a href="#contact">Assessment</a></li>
+              <li class="scroll-to-section">
+                <!-- <div class="border-first-button"><a href="#contact">Visit Assessment</a></div> -->
+              </li>
+            </ul>
+            <a class='menu-trigger'>
+              <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-6 align-self-center">
+              <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <!-- <h6>Social Phobia Analysis</h6> -->
+                    <h2>Social Phobia Analysis</h2>
+                    <p class="">Decoding Social Phobia Dynamics: Insights from SPIN Levels in the 18-28 Age Group.
+                      This study closely analyzes social phobia dynamics, focusing on SPIN levels in the 18-28 age
+                      group. By considering age-specific factors, we aim to reveal patterns and predictors, improving
+                      our precision in addressing social phobia in this age range</p>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="border-first-button scroll-to-section">
+                      <a href="#contact">Try-out</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+                <img src="{% static '/assets/images/des.jpg'%}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="about" class="about section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="about-left-image  wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.5s">
+                <img src="{% static '/assets/images/about-dec.png'%}">
+              </div>
+            </div>
+            <div class="col-lg-6 align-self-center  wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+              <div class="about-right-content">
+                <div class="section-heading">
+                  <!-- <h6>About Us</h6> -->
+                  <h4>Top Accuracy-Based <em>Model</em></h4>
+                  <div class="line-dec">
+
+                  </div>
+                </div>
+                <p>
+                  Introducing our top 3 machine learning models with an outstanding 99% accuracy on categorical social
+                  phobia test data. Random Forest leads at 99.97%, showcasing robustness. Close behind is k-Nearest
+                  Neighbors (KNN) at 99.27%, known for simplicity. Logistic Regression is third at 99.12%, providing
+                  efficiency and interpretability. This impressive accuracy underlines their suitability for social
+                  phobia assessments. </p>
+                <div class="row">
+                  <div class="col-lg-4 col-sm-4">
+                    <div class="skill-item first-skill-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0s">
+                      <div class="progress" data-percentage="90">
+                        <span class="progress-left">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <span class="progress-right">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <div class="progress-value">
+                          <div>
+                            99.8%<br>
+                            <span>Random Forest</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-4">
+                    <div class="skill-item second-skill-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0s">
+                      <div class="progress" data-percentage="80">
+                        <span class="progress-left">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <span class="progress-right">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <div class="progress-value">
+                          <div>
+                            99.27%<br>
+                            <span>K-NN</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-4">
+                    <div class="skill-item third-skill-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0s">
+                      <div class="progress" data-percentage="80">
+                        <span class="progress-left">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <span class="progress-right">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <div class="progress-value">
+                          <div>
+                            99.12%<br>
+                            <span>Logistic Reg.</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="services" class="services section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+            <!-- <h6>Use</h6> -->
+            <h4>Data <em>visualization</em></h4>
+            <div class="line-dec"></div>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="naccs">
+            <div class="grid">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="menu">
+                    <div class="first-thumb active">
+                      <div class="thumb">
+                        <span class="icon"><img src="{% static '/assets/images/service-icon-01.png'%}"></span>
+                        Box Plot
+                      </div>
+                    </div>
+                    <div>
+                      <div class="thumb">
+                        <span class="icon"><img src="{% static '/assets/images/service-icon-02.png'%}"></span>
+                        Histogram Plot
+                      </div>
+                    </div>
+                    <div>
+                      <div class="thumb">
+                        <span class="icon"><img src="{% static '/assets/images/service-icon-03.png'%}"></span>
+                        Count Plot
+                      </div>
+                    </div>
+                    <div>
+                      <div class="thumb">
+                        <span class="icon"><img src="{% static '/assets/images/service-icon-04.png'%}"></span>
+                        Heatmap Plot
+                      </div>
+                    </div>
+                    <!-- <div class="last-thumb">
+                      <div class="thumb">                 
+                        <span class="icon"><img src="{% static '/assets/images/service-icon-01.png" alt=""></span>
+                        Traveling
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <ul class="nacc">
+                    <li class="active">
+                      <div>
+                        <div class="thumb">
+                          <div class="row">
+                            <div class="col-lg-6 align-self-center">
+                              <div class="left-text">
+                                <h4>Box Plot</h4>
+                                <p>a box-and-whisker plot, is a graphical representation of the distribution of a
+                                  dataset. It provides a summary of key statistical measures such as the minimum, first
+                                  quartile (25th percentile), median (50th percentile), third quartile (75th
+                                  percentile), and maximum</p>
+                                <div class="ticks-list"><span><i class="fa fa-check"></i> Data Distribution
+                                    Comparison</span><span><i class="fa fa-check"></i> Identification of Outliers</span>
+                                  <span><i class="fa fa-check"></i>Central Tendency Visualization</span> <span><i
+                                      class="fa fa-check"></i> Spread and Variability Analysis</span>
+                                </div>
+                              </div>
+                              <p class="text-break">Reference: <a
+                                  href="https://seaborn.pydata.org/generated/seaborn.boxplot.html">https://seaborn.pydata.org/generated/seaborn.boxplot.html</a>
+                              </p>
+                            </div>
+                            <div class="col-lg-6 align-self-center">
+                              <div class="right-image">
+                                <img src="{% static '/assets/images/boxplot.png'%}">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <div class="thumb">
+                          <div class="row">
+                            <div class="col-lg-6 align-self-center">
+                              <div class="left-text">
+                                <h4>Histogram Plot</h4>
+                                <p>we use the histplot function in pandas to create a histogram of a numerical column in
+                                  a DataFrame. A histogram is a graphical representation of the distribution of data,
+                                  showing how frequently different values occur</p>
+                                <div class="ticks-list"><span><i class="fa fa-check"></i> Visualization</span> <span><i
+                                      class="fa fa-check"></i> Identifying Patterns</span> <span><i
+                                      class="fa fa-check"></i> Outliers Detection</span>
+                                  <span> <span><i class="fa fa-check"></i> Data Exploration</span>
+                                </div>
+                                <p class="text-break">Reference: <a
+                                    href="https://seaborn.pydata.org/generated/seaborn.histplot.html">https://seaborn.pydata.org/generated/seaborn.histplot.html</a>
+                                </p>
+                              </div>
+                            </div>
+                            <div class="col-lg-6 align-self-center">
+                              <div class="right-image">
+                                <img src="{% static '/assets/images/histogramplot.png'%}">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <div class="thumb">
+                          <div class="row">
+                            <div class="col-lg-6 align-self-center">
+                              <div class="left-text">
+                                <h4>Count Plot</h4>
+                                <p>countplot in pandas is a way to visualize the number of occurrences of different
+                                  categories in a categorical variable. It helps you quickly understand the distribution
+                                  of data within a single categorical variable</p>
+                                <div class="ticks-list"><span><i class="fa fa-check"></i> Quick Frequency
+                                    Analysis</span> <span><i class="fa fa-check"></i> Data Distribution Overview</span>
+                                  <span><i class="fa fa-check"></i> Identifying Dominant Categories</span>
+                                  <span><i class="fa fa-check"></i> Spotting Rare Categories</span> <span><i
+                                      class="fa fa-check"></i> Comparing Categorical Data</span> <span><i
+                                      class="fa fa-check"></i> Data Cleaning and Exploration</span>
+                                </div>
+                                <p class="text-break">Reference: <a
+                                    href="https://seaborn.pydata.org/generated/seaborn.countplot.html">https://seaborn.pydata.org/generated/seaborn.countplot.html</a>
+                                </p>
+                              </div>
+                            </div>
+                            <div class="col-lg-6 align-self-center">
+                              <div class="right-image">
+                                <img src="{% static '/assets/images/countplot.png'%}">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <div class="thumb">
+                          <div class="row">
+                            <div class="col-lg-6 align-self-center">
+                              <div class="left-text">
+                                <h4>Heatmap</h4>
+                                <p>A heatmap in pandas is a visual representation of data in a tabular format where
+                                  colors are used to represent the values. It's particularly useful for exploring
+                                  relationships or patterns in a dataset, especially when dealing with large amounts of
+                                  numerical data</p>
+                                <div class="ticks-list"><span><i class="fa fa-check"></i> Colors</span> <span><i
+                                      class="fa fa-check"></i> Patterns</span> <span><i class="fa fa-check"></i> Ease of
+                                    Interpretation</span>
+                                  <span><i class="fa fa-check"></i> Comparison</span>
+                                </div>
+                                <p class="text-break">Reference: <a
+                                    href="https://seaborn.pydata.org/generated/seaborn.heatmap.html">https://seaborn.pydata.org/generated/seaborn.heatmap.html</a>
+                                </p>
+                              </div>
+                            </div>
+                            <div class="col-lg-6 align-self-center">
+                              <div class="right-image">
+                                <img src="{% static '/assets/images/heatmap.png'%}">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="free-quote" class="free-quote">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 offset-lg-4">
+          <div class="section-heading  wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
+            <h4>Access Our Repository</h4>
+            <h6>Click Below</h6>
+            <div class="line-dec"></div>
+          </div>
+        </div>
+        <div class="col-lg-8 offset-lg-2  wow fadeIn" data-wow-duration="1s" data-wow-delay="0.8s">
+          <!-- <form">
+            <div class="row">
+              <div class="col-lg-4 col-sm-4">
+                <fieldset>
+                  <input type="web" name="web" class="website" placeholder="Your website URL..." autocomplete="on"
+                    required>
+                </fieldset>
+              </div>
+              <div class="col-lg-4 col-sm-4">
+                <fieldset>
+                  <input type="address" name="address" class="email" placeholder="Email Address..." autocomplete="on"
+                    required>
+                </fieldset>
+              </div>
+              <div class="col-lg-4 col-sm-4">
+                <fieldset>
+                  <button type="submit" class="main-button">Get Quote Now</button>
+                </fieldset>
+              </div>
+            </div>
+          </form> -->
+          <div class="row">
+            <div class="col-lg-6 col-sm-12 mb-4">
+              <a href="https://github.com/iamharshvardhangehlot/Social-Phobia-Analysis" target="_blank">
+                <button class="btn btn-primary w-100 rounded-pill py-4"
+                  style="background-color: #726ae3; border:none; outline:none; "><i class="fa fa-folder-open"
+                    aria-hidden="true"></i> Repository</button> </a>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+              <a href="https://www.kaggle.com/code/hvg730/cm-5-social-phobia-analysis" target="_blank">
+                <button class="btn btn-primary w-100 rounded-pill py-4"
+                  style="background-color: #726ae3; border:none; outline:none;"><i class="fa fa-table"
+                    aria-hidden="true"></i> Dataset Notebook</button>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="portfolio" class="our-portfolio section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="section-heading wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
+            <h6>Technologies</h6>
+            <h4>ML <em>Libraries</em></h4>
+            <div class="line-dec"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid wow fadeIn" data-wow-duration="1s" data-wow-delay="0.7s">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="loop owl-carousel">
+            <div class="item">
+              <a href="https://www.python.org" target="_blank">
+                <div class="portfolio-item">
+                  <div class="thumb">
+                    <img src="{% static '/assets/images/logo/Python.png'%}" class="img-thumbnail">
+                  </div>
+                  <div class="down-content">
+                    <h4>Python</h4>
+                    <span>Programming Language</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="item">
+              <a href="https://numpy.org" target="_blank">
+                <div class="portfolio-item">
+                  <div class="thumb">
+                    <img src="{% static '/assets/images/logo/NumPy.png'%}" class="img-thumbnail">
+                  </div>
+                  <div class="down-content">
+                    <h4>Numpy</h4>
+                    <span>mathematical operations</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="item">
+              <a href="https://pandas.pydata.org" target="_blank">
+                <div class="portfolio-item">
+                  <div class="thumb">
+                    <img src="{% static '/assets/images/logo/Pandas.png'%}" class="img-thumbnail">
+                  </div>
+                  <div class="down-content">
+                    <h4>Pandas</h4>
+                    <span>Python Data Analysis</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="item">
+              <a href="https://matplotlib.org" target="_blank">
+                <div class="portfolio-item">
+                  <div class="thumb">
+                    <img src="{% static '/assets/images/logo/Matplotlib.png'%}" class="img-thumbnail">
+                  </div>
+                  <div class="down-content">
+                    <h4>Matplotlib</h4>
+                    <span>Data visualization</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="item">
+              <a href="https://seaborn.pydata.org" target="_blank">
+                <div class="portfolio-item">
+                  <div class="thumb">
+                    <img src="{% static '/assets/images/logo/seaborn.png'%}" class="img-thumbnail">
+                  </div>
+                  <div class="down-content">
+                    <h4>Seaborn</h4>
+                    <span>Visualize random distributions</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="item">
+              <a href="https://scikit-learn.org/stable" target="_blank">
+                <div class="portfolio-item">
+                  <div class="thumb">
+                    <img src="{% static '/assets/images/logo/scikit-learn.png'%}" class="img-thumbnail">
+                  </div>
+                  <div class="down-content">
+                    <h4>Scikit-Learn</h4>
+                    <span>Implement machine learning models</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="blog" class="blog">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 offset-lg-4  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.3s">
+          <div class="section-heading">
+
+            <!-- <h6>Team members</h6> -->
+
+            <h4>Collaborative <em>Team</em></h4>
+            <div class="line-dec"></div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
+          <div class="blog-posts">
+            <div class="row">
+
+              <div class="col-lg-12 mb-5">
+                <div class="post-item">
+                  <div class="thumb">
+                    <div class="">
+                      <img src="{% static '/assets/images/Bhawna.jpg' %}" alt="bhawna image" class="object-fit-fill"
+                        style="max-width: 230px; max-height: 230px;">
+                    </div>
+                  </div>
+                  <div class="right-content">
+                    <span class="category">Team Lead</span>
+                    <!-- <span class="date">24 September 2021</span> -->
+                    <a>
+                      <h4>Bhawana Jangid</h4>
+                    </a>
+                    <p>UI Design and Documentation</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-12">
+                <div class="post-item">
+                  <div class="thumb">
+                    <div class="">
+                      <a>
+                        <img src="{% static '/assets/images/Harsh.jpg' %}" class="object-fit-fill" alt="harsh image"
+                          style="max-width: 230px; max-height: 230px;">
+                      </a>
+                    </div>
+                  </div>
+                  <div class="right-content">
+                    <span class="category">Contributor</span>
+                    <!-- <span class="date">30 July 2003</span> -->
+                    <a>
+                      <h4>Harshvardhan Gehlot</h4>
+                    </a>
+                    <p>Project Idea and Research</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
+          <div class="blog-posts">
+            <div class="row">
+
+              <div class="col-lg-12 mb-5">
+                <div class="post-item">
+                  <div class="thumb">
+                    <div class="">
+                      <a><img src="{% static '/assets/images/Bharat.jpg' %}" alt="bharat image" class="object-fit-fill"
+                          style="max-width: 230px; max-height: 230px;"></a>
+                    </div>
+                  </div>
+                  <div class="right-content">
+                    <span class="category">Contributor</span>
+                    <!-- <span class="date">24 September 2021</span> -->
+                    <a>
+                      <h4>Bharat Prajapat</h4>
+                    </a>
+                    <p>UI Design</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-12">
+                <div class="post-item">
+                  <div class="thumb">
+                    <div class="">
+                      <a><img src="{% static '/assets/images/Nishkarsh.jpg' %}" alt="" class="object-fit-fill"
+                          style="max-width: 230px; max-height: 230px;"></a>
+                    </div>
+                  </div>
+                  <div class="right-content">
+                    <span class="category">Contributor</span>
+                    <!-- <span class="date">30 July 2003</span> -->
+                    <a>
+                      <h4>Nishkarsh Verma</h4>
+                    </a>
+                    <p>Logics and Implementation</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contact" class="contact-us section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+          <div class="section-heading wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+            <h6>Assessment</h6>
+            <h4>Know your Social Phobia <em>Level </em></h4>
+            <div class="line-dec"></div>
+          </div>
+        </div>
+        <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
+          <form id="socialPhobiaForm">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="contact-dec">
+                  <img src="{% static '/assets/images/contact-dec.png'%}">
+                </div>
+              </div>
+
+              <div class="col-lg-5 ">
+                <div class="d-flex align-items-center h-100 justify-content-center mt-4">
+                  <div id="map" class="">
+                    <h1>Social Phobia Test</h1>
+                    <!-- <iframe
+                    src="https://maps.google.com/maps?q=Av.+L%C3%BAcio+Costa,+Rio+de+Janeiro+-+RJ,+Brazil&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                    width="100%" height="636px" frameborder="0" style="border:0" allowfullscreen>
+                  </iframe> -->
+                    <img src="{% static '/assets/images/people.png'%}">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-7">
+                <div class="fill-form">
+                  <div class="col-lg-12">
+
+                    <!-- question slider -->
+                    <div class="carousel--wrapper carousel--wrapper--sec">
+                      <div class="carousel">
+                        <div class="progress-bar">
+                          <div class="progress-bar-insider" data-progress=""></div>
+                        </div>
+                        <div class="carousel__content" style="width: 1820%; transform: translate(0%, 0px);">
+                          <div class="carousel--item" style="width: 5.55556%;">
+                            <h4 class="" style="color: #000; line-height: 50px;">Take a few minutes for the Social
+                              Phobia Level Test Now to <span>Uncover Your Social Confidence Quotient!</span></h4>
+                            <span class="carousel--radios"><button
+                                class="btn btn-primary nav--buttons--right mt">Start</button>
+                            </span>
+                          </div>
+
+
+                          <div class="carousel--item" style="width: 5.55556%;">
+                            <p class="carousel--title">Question 1</p>
+                            <p class="carousel--title carousel--title--sub">I am afraid of people in authority</p>
+                            <span class="carousel--radios">
+
+                              <div class="radio-item">
+                                <label><input type="radio" name="q1" value="0">Nope</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q1" value="1">Slightly</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q1" value="2">Moderately</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q1" value="3">Very</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q1" value="4">Extremely</label>
+                              </div>
+
+                            </span>
+                          </div>
+                          <div class="carousel--item violet" style="width: 5.55556%;">
+                            <p class="carousel--title">Question 2</p>
+                            <p class="carousel--title carousel--title--sub">I am bothered by blushing in front of
+                              people
+                            </p>
+                            <span class="carousel--radios">
+                              <div class="radio-item">
+                                <label><input type="radio" name="q2" value="0">Nope</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q2" value="1">Slightly</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q2" value="2">Moderately</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q2" value="3">Very</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q2" value="4">Extremely</label>
+                              </div>
+
+                            </span>
+                          </div>
+
+                          <div class="carousel--item violet" style="width: 5.55556%;">
+                            <p class="carousel--title">Question 3</p>
+                            <p class="carousel--title carousel--title--sub">Parties and social events scare me</p>
+                            <span class="carousel--radios">
+                              <div class="radio-item">
+                                <label><input type="radio" name="q3" value="0">Nope</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q3" value="1">Slightly</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q3" value="2">Moderately</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q3" value="3">Very</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q3" value="4">Extremely</label>
+                              </div>
+
+                            </span>
+                          </div>
+                          <div class="carousel--item violet" style="width: 5.55556%;">
+                            <p class="carousel--title">Question 4</p>
+                            <p class="carousel--title carousel--title--sub">I avoid talking to people I don’t know</p>
+                            <span class="carousel--radios">
+                              <div class="radio-item">
+                                <label><input type="radio" name="q4" value="0">Nope</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q4" value="1">Slightly</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q4" value="2">Moderately</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q4" value="3">Very</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q4" value="4">Extremely</label>
+                              </div>
+
+                            </span>
+                          </div>
+                          <div class="carousel--item accent-blue" style="width: 5.55556%;">
+                            <p class="carousel--title">Question 5</p>
+                            <p class="carousel--title carousel--title--sub">Being criticized scares me a lot</p>
+                            <span class="carousel--radios">
+                              <div class="radio-item">
+                                <label><input type="radio" name="q5" value="0">Nope</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q5" value="1">Slightly</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q5" value="2">Moderately</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q5" value="3">Very</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q5" value="4">Extremely</label>
+                              </div>
+
+                            </span>
+                          </div>
+                          <div class="carousel--item accent-blue" style="width: 5.55556%;">
+                            <p class="carousel--title">Question 6</p>
+                            <p class="carousel--title carousel--title--sub">I avoid doing things or speaking to people
+                              for fear of embarrassment</p>
+                            <span class="carousel--radios">
+                              <div class="radio-item">
+                                <label><input type="radio" name="q6" value="0">Nope</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q6" value="1">Slightly</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q6" value="2">Moderately</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q6" value="3">Very</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q6" value="4">Extremely</label>
+                              </div>
+
+                            </span>
+                          </div>
+                          <div class="carousel--item accent-blue" style="width: 5.55556%;">
+                            <p class="carousel--title">Question 7</p>
+                            <p class="carousel--title carousel--title--sub">Sweating in front of people causes me
+                              distress</p>
+                            <span class="carousel--radios">
+                              <div class="radio-item">
+                                <label><input type="radio" name="q7" value="0">Nope</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q7" value="1">Slightly</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q7" value="2">Moderately</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q7" value="3">Very</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q7" value="4">Extremely</label>
+                              </div>
+
+                            </span>
+                          </div>
+
+                          <div class="carousel--item blue" style="width: 5.55556%;">
+                            <p class="carousel--title">Question 8</p>
+                            <p class="carousel--title carousel--title--sub">I avoid going to parties</p>
+                            <span class="carousel--radios">
+                              <div class="radio-item">
+                                <label><input type="radio" name="q8" value="0">Nope</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q8" value="1">Slightly</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q8" value="2">Moderately</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q8" value="3">Very</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q8" value="4">Extremely</label>
+                              </div>
+
+                            </span>
+                          </div>
+
+                          <div class="carousel--item blue" style="width: 5.55556%;">
+                            <p class="carousel--title">Question 9</p>
+                            <p class="carousel--title carousel--title--sub">I avoid activities in which I am the
+                              center
+                              of attention
+                            </p>
+                            <span class="carousel--radios">
+                              <div class="radio-item">
+                                <label><input type="radio" name="q9" value="0">Nope</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q9" value="1">Slightly</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q9" value="2">Moderately</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q9" value="3">Very</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q9" value="4">Extremely</label>
+                              </div>
+
+                            </span>
+                          </div>
+
+                          <div class="carousel--item blue" style="width: 5.55556%;">
+                            <p class="carousel--title">Question 10</p>
+                            <p class="carousel--title carousel--title--sub">Talking to strangers scares me</p>
+                            <span class="carousel--radios">
+                              <div class="radio-item">
+                                <label><input type="radio" name="q10" value="0">Nope</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q10" value="1">Slightly</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q10" value="2">Moderately</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q10" value="3">Very</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q10" value="4">Extremely</label>
+                              </div>
+
+                            </span>
+                          </div>
+
+                          <div class="carousel--item accent-blue" style="width: 5.55556%;">
+                            <p class="carousel--title">Question 11</p>
+                            <p class="carousel--title carousel--title--sub">I avoid having to give speeches</p>
+                            <span class="carousel--radios">
+                              <div class="radio-item">
+                                <label><input type="radio" name="q11" value="0">Nope</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q11" value="1">Slightly</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q11" value="2">Moderately</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q11" value="3">Very</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q11" value="4">Extremely</label>
+                              </div>
+
+                            </span>
+                          </div>
+
+                          <div class="carousel--item accent-blue" style="width: 5.55556%;">
+                            <p class="carousel--title">Question 12</p>
+                            <p class="carousel--title carousel--title--sub">I would do anything to avoid being
+                              criticized</p>
+                            <span class="carousel--radios">
+                              <div class="radio-item">
+                                <label><input type="radio" name="q12" value="0">Nope</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q12" value="1">Slightly</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q12" value="2">Moderately</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q12" value="3">Very</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q12" value="4">Extremely</label>
+                              </div>
+
+                            </span>
+                          </div>
+
+                          <div class="carousel--item accent-blue" style="width: 5.55556%;">
+                            <p class="carousel--title">Question 13</p>
+                            <p class="carousel--title carousel--title--sub">Heart palpitations bother me when I am
+                              around people
+                            </p>
+                            <span class="carousel--radios">
+                              <div class="radio-item">
+                                <label><input type="radio" name="q13" value="0">Nope</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q13" value="1">Slightly</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q13" value="2">Moderately</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q13" value="3">Very</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q13" value="4">Extremely</label>
+                              </div>
+
+                            </span>
+                          </div>
+
+
+                          <div class="carousel--item blue" style="width: 5.55556%;">
+                            <p class="carousel--title">Question 14</p>
+                            <p class="carousel--title carousel--title--sub">Being embarrassed or looking stupid are
+                              among my worst fears</p>
+                            <span class="carousel--radios">
+                              <div class="radio-item">
+                                <label><input type="radio" name="q14" value="0">Nope</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q14" value="1">Slightly</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q14" value="2">Moderately</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q14" value="3">Very</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q14" value="4">Extremely</label>
+                              </div>
+
+                            </span>
+                          </div>
+
+                          <div class="carousel--item violet" style="width: 5.55556%;">
+                            <p class="carousel--title">Question 15</p>
+                            <p class="carousel--title carousel--title--sub">Being embarrassed or looking stupid are
+                              among my worst fears
+                            </p>
+                            <span class="carousel--radios">
+                              <div class="radio-item">
+                                <label><input type="radio" name="q15" value="0">Nope</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q15" value="1">Slightly</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q15" value="2">Moderately</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q15" value="3">Very</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q15" value="4">Extremely</label>
+                              </div>
+
+                            </span>
+                          </div>
+
+                          <div class="carousel--item violet" style="width: 5.55556%;">
+                            <p class="carousel--title">Question 16</p>
+                            <p class="carousel--title carousel--title--sub">I avoid speaking to anyone in authority
+                            </p>
+                            <span class="carousel--radios">
+                              <div class="radio-item">
+                                <label><input type="radio" name="q16" value="0">Nope</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q16" value="1">Slightly</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q16" value="2">Moderately</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q16" value="3">Very</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q16" value="4">Extremely</label>
+                              </div>
+
+                            </span>
+                          </div>
+
+                          <div class="carousel--item violet" style="width: 5.55556%;">
+                            <p class="carousel--title">Question 17</p>
+                            <p class="carousel--title carousel--title--sub">Trembling or shaking in front of others is
+                              distressing to me</p>
+                            <span class="carousel--radios">
+                              <div class="radio-item">
+                                <label><input type="radio" name="q17" value="0">Nope</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q17" value="1">Slightly</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q17" value="2">Moderately</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q17" value="3">Very</label>
+                              </div>
+                              <div class="radio-item">
+                                <label><input type="radio" name="q17" value="4">Extremely</label>
+                              </div>
+
+                            </span>
+                          </div>
+
+                          <div class="carousel--item" id="result-btn" style="width: 5.55556%;">
+                            <p class="carousel--title">You are almost done!</p>
+                            <div class="carousel--btn">
+                              <button type="submit" value="Predict">Calculate Results</button>
+                            </div>
+                          </div>
+
+                          <div class="carousel--item" id="per">
+                            <div class="row mx-5">
+                              <div class="col ms-4 mb-3">
+                                <div class="per-skill">
+                                  <div class="per-outer">
+                                    <div class="per-inner">
+                                      <div id="per-number">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <svg id="per-svg" xmlns="http: / /www.w3.org/2000/svg" version="1.1" width="160px"
+                                    height="160px">
+                                    <defs>
+                                      <linearGradient id="GradientColor">
+                                        <stop offset="0%" stop-color="#DA22FF" />
+                                        <stop offset="100%" stop-color="#726ae3" />
+                                      </linearGradient>
+                                    </defs>
+                                    <circle id="per-circle" cx="80" cy="80" r="70" stroke-linecap="round" />
+                                  </svg>
+                                </div>
+                              </div>
+                              <div class="col d-flex justify-content-center align-items-center">
+                                <h4 class="fs-6"  id="resultText"></h4>
+
+                              </div>
+                            </div>
+                            <a href="">
+                              <button type="reset" id="resetForm"><i class="fa fa-undo" aria-hidden="true"></i>
+                                Retake Test</button>
+                            </a>
+                          </div>
+
+
+                        </div>
+                        <div class="carousel__nav">
+                          <a class="nav--buttons nav--buttons--left" href="#" style="display: none;">←</a> <a
+                            class="nav--buttons nav--buttons--right" href="#" style="display: none;">→</a>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <p class="fs-4 ">Project : <span class="fw-bold">Social Phobia Analysis</span>
+            <br> Developed by :<span class="fw-bold"> Data Decoders</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.12/jquery.transit.min.js"></script>
+
+
+
+  <!-- Ajax -->
+  <script>
+    $(document).ready(function () {
+      $('#socialPhobiaForm').submit(function (e) {
+        e.preventDefault();
+  
+        var resultBtnDiv = $('#result-btn');
+        var perDiv = $('#per');
+  
+        $.ajax({
+          type: 'GET',
+          url: 'result/',
+          data: $(this).serialize(),
+          success: function (data) {
+            var percentlimit = data.percent;
+  
+            if (percentlimit <= 20) {
+              document.getElementById('resultText').innerHTML = "You're in the clear";
+            } else if (percentlimit <= 40) {
+              document.getElementById('resultText').innerHTML = "Commendable score";
+            } else if (percentlimit <= 60) {
+              document.getElementById('resultText').innerHTML = "Moderate social phobia";
+            } else if (percentlimit <= 80) {
+              document.getElementById('resultText').innerHTML = "Significant social phobia, consider seeking support";
+            } else if (percentlimit <= 100) {
+              document.getElementById('resultText').innerHTML = "Extreme social phobia, seek immediate support";
+            } else {
+              document.getElementById('resultText').innerHTML = "Please answer all questions";
+            }
+  
+            let number = document.getElementById('per-number');
+            let circle = document.getElementById('per-circle');
+            let per_counter = 0;
+            let animationDuration = 2000;
+  
+            let intervalId = setInterval(() => {
+              if (per_counter == percentlimit) {
+                clearInterval(intervalId);
+              } else {
+                per_counter += 1;
+                number.innerHTML = `${per_counter}%`;
+                animationDuration = (per_counter / 70) * 2000;
+                circle.style.setProperty('--percentage', per_counter);
+                circle.style.animationDuration = `${animationDuration}ms`;
+              }
+            }, 30);
+  
+            resultBtnDiv.hide();
+            perDiv.show();
+          },
+          error: function (error) {
+            console.log(error);
+          }
+        });
+      });
+  
+      $('#resetForm').on('click', function () {
+      $('#socialPhobiaForm')[0].reset(); // Clear the form
+      location.reload();
+      window.location.href = '#socialPhobiaForm'; // Clear form data from URL
+    });
+    });
+  </script>
+  
+
+
+
+  <!-- Question slider -->
+  <script>
+    (function () {
+      var carouselTransition,
+        carouselContent,
+        carouselIndex,
+        carouselLength,
+        firstClone,
+        firstItem,
+        isAnimating,
+        itemWidth,
+        lastClone,
+        lastItem;
+      carouselTransition = 250;
+      carouselContent = $(".carousel__content");
+      carouselIndex = 0;
+      carouselMax = 0;
+      carouselLength = carouselContent.children().length;
+      isAnimating = false;
+      itemWidth = 100 / carouselLength;
+      firstItem = $(carouselContent.children()[0]);
+      lastItem = $(carouselContent.children()[carouselLength - 1]);
+      firstClone = null;
+      lastClone = null;
+      carouselContent.css("width", carouselLength * 100 + "%");
+      carouselContent.transition({ x: carouselIndex * -itemWidth + "%" }, 0);
+      $.each(carouselContent.children(), function () {
+        return $(this).css("width", itemWidth + "%");
+      });
+      $(".nav--buttons--left").on("click", function (event) {
+        event.preventDefault();
+        if (isAnimating || carouselIndex === 0) {
+          return;
+        }
+        isAnimating = true;
+        carouselIndex--;
+        update_progress_bar(carouselIndex);
+        $(".nav--buttons--right").css("display", "block");
+        if (carouselIndex === 0 || carouselIndex === 1) {
+          $(".nav--buttons--left").css("display", "none");
+        }
+        return carouselContent.transition(
+          { x: carouselIndex * -itemWidth + "%" },
+          carouselTransition,
+          "ease",
+          function () {
+            return (isAnimating = false);
+          }
+        );
+      });
+      $(".nav--buttons--right").on("click", function (event) {
+        event.preventDefault();
+        if (isAnimating || carouselIndex === carouselLength - 1) {
+          return;
+        }
+        isAnimating = true;
+        carouselIndex++;
+        update_progress_bar(carouselIndex);
+        if (carouselIndex > carouselMax) {
+          carouselMax = carouselIndex;
+        }
+        $(".nav--buttons--left").css("display", "block");
+        if (carouselIndex === carouselLength - 1 || carouselIndex === carouselMax) {
+          $(".nav--buttons--right").css("display", "none");
+        }
+        if (carouselIndex === 1) {
+          $(".nav--buttons--left").css("display", "none");
+        }
+        return carouselContent.transition(
+          { x: carouselIndex * -itemWidth + "%" },
+          carouselTransition,
+          "ease",
+          function () {
+            return (isAnimating = false);
+          }
+        );
+      });
+    }.call(this));
+
+    function sumArray(from, to, size) {
+      var sum = parseFloat("0.00");
+      for (var i = from; i <= to; i++) {
+        sum += parseFloat(results[i][size]);
+      }
+      return sum.toFixed(1).toString();
+    }
+
+    function calc_results(button_elem) {
+      var count = 0;
+      var checked = 0;
+      var size = $("input[name=size]:checked").val();
+      $(":checked").each(function () {
+        checked++;
+      });
+      if (checked != 17) {
+        alert("Please check all of the questions.");
+        return;
+      }
+      $(".questions").each(function () {
+        if ($(this).is(":checked")) {
+          count++;
+        }
+      });
+      var less = sumArray(0, count - 1, size);
+      var same = sumArray(count, count, size);
+      var more = sumArray(count + 1, 15, size);
+
+    }
+
+    function update_progress_bar(index) {
+      var checked = index;
+      if (checked === 0) {
+        $(".progress-bar-insider").css("width", "4%");
+      } else {
+        checked = checked - 1;
+        $(".progress-bar-insider").css("width", (checked / 17) * 96 + 4 + "%");
+      }
+      if (checked < 17) {
+        $(".progress-bar-insider").attr("data-progress", checked + 1 + "/17");
+      } else {
+        $(".progress-bar-insider").attr("data-progress", "");
+      }
+    }
+
+    $(".carousel--item input[type=radio]").click(function () {
+      $("#auto-con-calc").slideUp();
+      $(".nav--buttons--right").trigger("click");
+    });
+
+    function sliderControl(less, same, more) {
+      var less_slider = $(".score-slider-less");
+      var same_slider = $(".score-slider");
+      var more_slider = $(".score-slider-more");
+
+      if (same < 5.0) {
+        same_slider.css("width", "5%");
+      } else {
+        less_slider.css("width", same + "%");
+      }
+      same_slider.css("left", less + "%").html(same + "%");
+      less_slider
+        .css("width", parseFloat(less) + parseFloat(same) / 2 + "%")
+        .html(less + "%");
+      more_slider
+        .css("width", parseFloat(more) + parseFloat(same) / 2 + "%")
+        .html(more + "%");
+    }
+
+  </script>
+
+
+
+
+  <!-- <script src="{% static '/assets/js/percent-bar.js' %}"></script> -->
+  <script src="{% static '/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static '/vendor/bootstrap/js/bootstrap.bundle.min.js' %} "></script>
+  <script src="{% static '/assets/js/owl-carousel.js' %}"></script>
+  <script src="{% static '/assets/js/animation.js' %}"></script>
+  <script src="{% static '/assets/js/imagesloaded.js' %}"></script>
+  <script src="{% static '/assets/js/custom.js' %}"></script>
+
+</body>
+
+</html>
