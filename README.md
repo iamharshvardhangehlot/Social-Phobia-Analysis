@@ -39,11 +39,6 @@ Explore the forefront of data analytics with our machine learning-based project,
 
 Embark on a sophisticated journey into social phobia analysis through cutting-edge machine learning techniques. Uncover insightful visualizations, assess model accuracy, and engage in the unique Social Phobia Test functionality.
 
-## 📊 Machine Learning Libraries Used
-- [Library 1]
-- [Library 2]
-- [Library 3]
-
 ## 📝 Social Phobia Test
 
 Conduct a self-assessment using our Social Phobia Test, offering users an insightful analysis of social phobia based on their responses.
