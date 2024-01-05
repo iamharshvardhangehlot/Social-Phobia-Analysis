@@ -53,7 +53,7 @@ Conduct a self-assessment using our Social Phobia Test, offering users an insigh
 Initiate your exploration by following these steps:
 1. **Clone the repository:** `git clone https://github.com/iamharshvardhangehlot/Social-Phobia-Analysis.git`
 2. **Install dependencies:** `pip install -r requirements.txt`
-3. **Run the project:** [Instructions to run the project]
+3. **Run the project:** `py manage.py runserver`
 
 ## Dataset Analysis Notebook
 
